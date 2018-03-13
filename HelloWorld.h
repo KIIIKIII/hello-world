@@ -3,9 +3,7 @@
 class HelloWorld {
   public:
     void helloworld() {
-      cout << c << endl;
+      cout << "HelloWorld!" << endl;
     }
-  private:
-    char c[] = {"HelloWorld!"};
 };
 #endif
