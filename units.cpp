@@ -1,9 +1,9 @@
 #pragma once
-#include "Àà.h"
+#include "ìžš.h"
 
 int main() {
 	while (true) {
-		cout << "ÇëÊäÈëÒª×ª»¯µÄµ¥Î»ÀàÐÍ£º1.ÖØÁ¿µ¥Î» 2.Ñ¹Á¦µ¥Î» 3.³¤¶Èµ¥Î» 0.½áÊø" << endl;
+		cout << "í—æ¸´í™ï¤«ç˜»ëºë¨ë°è²«ìžšè¬¹ï¼š1.è·¯ì¢†ë°è²« 2.ç®•ì œë°è²« 3.ë‚€ë˜‘ë°è²« 0.ì¨ç›£" << endl;
 		int flag = 0;
 		cin >> flag;
 		if (!flag) break;
@@ -30,7 +30,7 @@ int main() {
 			break;
 		}
 		default:
-			cout << "ÊäÈë´íÎó£¡" << endl;
+			cout << "æ¸´í™ëŒ„è½Žï¼" << endl;
 			break;
 		}
 	}
