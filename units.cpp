@@ -11,22 +11,22 @@ int main() {
 		case 1: {
 			weight W;
 			W.input();
-			W.convert();
-			W.output();
+			int f = W.convert();
+			if (!f) W.output();
 			break;
 		}
 		case 2: {
 			pressure P;
 			P.input();
-			P.convert();
-			P.output();
+			int f = P.convert();
+			if (!f) P.output();
 			break;
 		}
 		case 3: {
 			length L;
 			L.input();
-			L.convert();
-			L.output();
+			int f = L.convert();
+			if (!f) L.output();
 			break;
 		}
 		default:
