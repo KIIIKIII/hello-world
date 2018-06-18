@@ -1,4 +1,4 @@
-#pragma once//‘±π§π‹¿ÌœµÕ≥
+#pragma once
 #include<iostream>
 #include<cstdio>
 #include<cstring>
@@ -15,16 +15,16 @@ public:
 	unit() {}
 	~unit() {}
 	void input() {
-		cout << "«Î ‰»Î‘≠µ•Œª£∫";
+		cout << "ËØ∑ËæìÂÖ•ÂéüÂçï‰ΩçÔºö";
 		scanf_s("%5s", unit1, 5);
-		cout << endl << "«Î ‰»Î–¬µ•Œª£∫";
+		cout << endl << "ËØ∑ËæìÂÖ•Êñ∞Âçï‰ΩçÔºö";
 		scanf_s("%5s", unit2, 5);
-		cout << endl << "«Î ‰»Î‘≠÷µ£∫";
+		cout << endl << "ËØ∑ËæìÂÖ•ÂéüÂÄºÔºö";
 		cin >> x;
 		cout << endl;
 	}
 	void output() {
-		cout << "–¬µ•Œªœ¬µƒ÷µŒ™£∫";
+		cout << "Êñ∞Âçï‰Ωç‰∏ãÁöÑÂÄº‰∏∫Ôºö";
 		cout << y << endl;
 	}
 	double x;
@@ -33,7 +33,7 @@ public:
 	char unit2[INT];
 };
 
-char wei[INT][5] = {"ug", "mg", "g", "kg", "t", "lb", "gr", "oz", "ΩÔ", "¡Ω", "q", "ct", "dr", "µ£", "«Æ"};
+char wei[INT][5] = {"ug", "mg", "g", "kg", "t", "lb", "gr", "oz", "Êñ§", "‰∏§", "q", "ct", "dr", "ÊãÖ", "Èí±"};
 double w[INT] = {1000000, 1000, 1, 0.001, 0.000001, 0.0022046, 15.4323584, 0.035274, 0.002, 0.02, 0.00001, 5, 0.5643834, 0.00002, 0.2};
 class weight :public unit {
 public:
@@ -97,7 +97,7 @@ public:
 	}
 };
 
-char len[INT][5] = {"m", "cm", "km", "mm", "dm", "um", "nm", "pm", "ly", "au", "in", "mi", "ft", "≥ﬂ", "yd", "nmi", "fm", "fur", "¿Ô", "’…", "¥Á", "∑÷", "¿Â", "∫¡"};
+char len[INT][5] = {"m", "cm", "km", "mm", "dm", "um", "nm", "pm", "ly", "au", "in", "mi", "ft", "Â∞∫", "yd", "nmi", "fm", "fur", "Èáå", "‰∏à", "ÂØ∏", "ÂàÜ", "Âéò", "ÊØ´"};
 double l[INT] = {1, 100, 0.001, 1000, 10, 1e6, 1e9, 1e12, 1.057e-16, 6.6846e-12, 39.3700787, 0.0006214, 3.2808399, 3, 1.0936133, 0.00054, 0.5468066, 0.004971, 0.002, 0.3, 30, 300, 3000, 30000};
 class length :public unit {
 public:
