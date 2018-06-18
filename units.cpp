@@ -1,9 +1,9 @@
 #pragma once
-#include "잚.h"
+#include "units.h"
 
 int main() {
 	while (true) {
-		cout << "헝渴흙狼瘻뺏돨데貫잚謹：1.路좆데貫 2.箕제데貫 3.낀똑데貫 0.써監" << endl;
+		cout << "请输入要转化的单位类型：1.重量单位 2.压力单位 3.长度单位 0.结束" << endl;
 		int flag = 0;
 		cin >> flag;
 		if (!flag) break;
@@ -30,7 +30,7 @@ int main() {
 			break;
 		}
 		default:
-			cout << "渴흙댄轎！" << endl;
+			cout << "输入错误！" << endl;
 			break;
 		}
 	}
