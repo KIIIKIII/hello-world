@@ -1,0 +1,46 @@
+#include <cstring>
+#include <cstdio>
+const int MAX = 200000 + 5;
+int data[MAX];
+int C[MAX];
+
+int lowbit(int x) { 
+	return x & -x; 
+}
+
+int sum(int k) {
+	int value = C[k];
+	while (k > lowbit(k))
+		value += C[(k -= lowbit(k))];
+	return value;
+}
+
+void add(int k, int d, int n) {
+	C[k] += d;
+	while (k + lowbit(k) <= n)
+		C[(k += lowbit(k))] += d;
+}
+
+int main() {
+	int  cases = 0, n, x, y;
+	char buf[10];
+	while (~scanf("%d", &n) && n) {
+		memset(C, 0, sizeof(C));
+		for (int i = 1; i <= n; ++i) {
+			scanf("%d", &data[i]);
+			add(i, data[i], n);
+		}
+
+		if (cases++) puts("");
+		printf("Case %d:\n", cases);
+		while (~scanf("%s", buf) && buf[0] != 'E') {
+			scanf("%d%d", &x, &y);
+			if (buf[0] == 'S') {
+				add(x, y - data[x], n);
+				data[x] = y;
+			}
+			else printf("%d\n", sum(y) - sum(x - 1));
+		}
+	}
+	return 0;
+}
