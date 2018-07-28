@@ -17,7 +17,6 @@ int dx[] = { 1, 0, -1 ,0 }, dy[] = { 0, 1, 0, -1 };
 int bfs(P s, P g) {
 	queue<P> que;
 	P n;
-
 	for (int i = 0; i<H; i++)
 		for (int j = 0; j<W; j++)
 			vis[i][j] = -1;
