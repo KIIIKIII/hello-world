@@ -24,6 +24,7 @@ public:
 	int from, to, w;
 	Edge(int a = 0, int b = 0):to(a), w(b){ }
 }edge[N];
+
 vector<Edge>vec[N];
 int cost[N];
 bool vis[N];
