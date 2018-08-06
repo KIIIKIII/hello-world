@@ -10,70 +10,83 @@
 using namespace std;
 typedef long long ll;
 const int INF = 0x3f3f3f3f3f;
-const int maxn = 100 + 5;
-const int maxv = 10000 + 5;
+const int MAXN = 100 + 5;
 
-int n, m, MST;
-bool vis[maxn];
-int father[maxn];
-int dist[maxn];
-int graph[maxn][maxn];
-bool used[maxn][maxn];
-int max_edge[maxn][maxn];
+bool vis[MAXN];
+int lowc[MAXN];
+int pre[MAXN];
+int Max[MAXN][MAXN];
+bool used[MAXN][MAXN];
+int cost[MAXN][MAXN];
 
-int prim() {
+int Prim(int cost[][MAXN], int n) {
 	int ans = 0;
-	dist[1] = 0;
-	vis[1] = true;
-	father[1] = -1;
-	for (int i = 2; i <= n; i++) {
-		father[i] = 1;
-		dist[i] = graph[1][i];
-	}
+	memset(vis, false, sizeof(vis));
+	memset(Max, 0, sizeof(Max));
+	memset(used, false, sizeof(used));
+	vis[0] = true;
+	pre[0] = -1;
 	for (int i = 1; i < n; i++) {
-		int v = -1;
-		for (int j = 1; j <= n; j++)
-			if (!vis[j] && (v == -1 || dist[j] < dist[v])) 
-				v = j;
-		ans += dist[v];
-		vis[v] = true;
-		used[father[v]][v] = used[v][father[v]] = false;
-		for (int j = 1; j <= n; j++)
-			if (vis[j])
-				max_edge[v][j] = max_edge[j][v] = max(max_edge[father[v]][j], dist[v]);
-			else if (graph[v][j] < dist[j]) {
-				dist[j] = graph[v][j];
-				father[j] = v;
+		lowc[i] = cost[0][i];
+		pre[i] = 0;
+	}
+	lowc[0] = 0;
+	for (int i = 1; i < n; i++) {
+		int minc = INF;
+		int p = -1;
+		for (int j = 0; j < n; j++)
+			if (!vis[j] && minc > lowc[j]) {
+				minc = lowc[j];
+				p = j;
 			}
+		if (minc == INF)return -1;
+		ans += minc;
+		vis[p] = true;
+		used[p][pre[p]] = used[pre[p]][p] = true;
+		for (int j = 0; j < n; j++) {
+			if (vis[j])Max[j][p] = Max[p][j] = max(Max[j][pre[p]], lowc[p]);
+			if (!vis[j] && lowc[j] > cost[p][j])
+			{
+				lowc[j] = cost[p][j];
+				pre[j] = p;
+			}
+		}
 	}
 	return ans;
 }
-
-int second_prim() {
-	int ans = INF;
-	for (int i = 1; i <= n; i++)
-		for (int j = 1; j <= n; j++)
-			if (used[i][j]) ans = min(ans, MST + graph[i][j] - max_edge[i][j]);
-	return ans;
+int ans;
+int smst(int cost[][MAXN], int n) {
+	int Min = INF;
+	for (int i = 0; i < n; i++)
+		for (int j = i + 1; j < n; j++)
+			if (cost[i][j] != INF && !used[i][j])
+				Min = min(Min, ans + cost[i][j] - Max[i][j]);
+	if (Min == INF) return -1;
+	return Min;
 }
 
 int main() {
 	int T;
 	scanf("%d", &T);
 	while (T--) {
-		memset(max_edge, -1, sizeof(max_edge));
-		memset(graph, INF, sizeof(graph));
+		int n, m;
 		scanf("%d%d", &n, &m);
-		for (int i = 0; i < m; i++) {
-			int a, b, c;
-			scanf("%d%d%d", &a, &b, &c);
-			graph[a][b] = graph[b][a] = c;
-			used[a][b] = used[b][a] = true;
+		int u, v, w;
+		for (int i = 0; i < n; i++)
+			for (int j = 0; j < n; j++) {
+				if (i == j)cost[i][j] = 0;
+				else cost[i][j] = INF;
+			}
+		while (m--) {
+			scanf("%d%d%d", &u, &v, &w);
+			u--; v--;
+			cost[u][v] = cost[v][u] = w;
 		}
-		MST = prim();
-		if (MST == second_prim()) 
+		ans = Prim(cost, n);
+		if (ans == -1 || ans == smst(cost, n))
 			printf("Not Unique!\n");
-		else printf("%d\n", MST);
+		else
+			printf("%d\n", ans);
 	}
 	return 0;
 }
